@@ -1,0 +1,159 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="interior_design_MasterPage" %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>U Query V Answer</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+<script src="js/jquery-1.6.2.min.js"></script>
+<script src="js/jquery.galleriffic.js"></script>
+<script src="js/jquery.opacityrollover.js"></script>
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
+<![endif]-->
+</head>
+<body id="page1">
+<!--==============================header=================================-->
+<header>
+  <div class="row-1">
+    <div class="main">
+      <div class="container_12">
+        <div class="grid_12">
+          <nav>
+            <ul class="menu">
+
+              
+              <li><a class ="active" href="Catalogue.aspx">Home</a></li>
+              <li><a href="Login.aspx">Login</a></li>
+               <li><a href="Services.aspx">Services</a></li>
+              <!--<li><a href="Pricing.aspx">Pricing</a></li>
+              <li><a href="My Shopping Cart.aspx">your shopping cart</a></li>-->
+              <li><a href="Contact Us.aspx">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="row-2">
+    <div class="main">
+      <div class="container_12">
+        <div class="grid_9">
+          <h1> <a class="logo" href="Home.aspx">U Query <strong></strong>V Answer</a> <span></span> </h1>
+        </div>
+        <div class="grid_3">
+          <form id="search-form" action="#" method="post" enctype="multipart/form-data">
+              
+            <fieldset>
+              <div class="search-field">
+                <asp:Label ID="lbl_Home" runat="server" Text="label"></asp:Label>
+                <a class="search-button" href="#"><span>
+                                                  </span></a> </div>
+            </fieldset>
+              
+          </form>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- content -->
+<section id="content">
+  
+      <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+      <asp:ContentPlaceHolder ID="BodyContent" runat="server"/>
+                
+    
+</section>
+<!--==============================footer=================================-->
+<footer>
+  <div class="main">
+    <div class="container_12">
+      <div class="wrapper">
+        <div class="grid_4">
+          <div>Copyright &copy; <a href="#">Domain Name</a> All Rights Reserved</div>
+          <!-- {%FOOTER_LINK} -->
+        </div>
+        <div class="grid_4"> <span class="phone-numb"><span>+1(816)</span> 810-5148</span> </div>
+        <div class="grid_4">
+          <ul class="list-services">
+            <li><a href="#"></a></li>
+            <li><a class="item-2" href="#"></a></li>
+            <li><a class="item-3" href="#"></a></li>
+            <li><a class="item-4" href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+    $(window).load(function () {
+        // We only want these styles applied when javascript is enabled
+        $('div.navigation').css({
+            'width': '320px',
+            'float': 'right'
+        });
+        $('div.content').css('display', 'block');
+
+        // Initially set opacity on thumbs and add
+        // additional styling for hover effect on thumbs
+        var onMouseOutOpacity = 0.5;
+        $('#thumbs ul.thumbs li span').opacityrollover({
+            mouseOutOpacity: onMouseOutOpacity,
+            mouseOverOpacity: 0.0,
+            fadeSpeed: 'fast',
+            exemptionSelector: '.selected'
+        });
+
+        // Initialize Advanced Galleriffic Gallery
+        var gallery = $('#thumbs').galleriffic({
+            delay: 7000,
+            numThumbs: 12,
+            preloadAhead: 6,
+            enableTopPager: false,
+            enableBottomPager: false,
+            imageContainerSel: '#slideshow',
+            controlsContainerSel: '',
+            captionContainerSel: '',
+            loadingContainerSel: '',
+            renderSSControls: true,
+            renderNavControls: true,
+            playLinkText: 'Play Slideshow',
+            pauseLinkText: 'Pause Slideshow',
+            prevLinkText: 'Prev',
+            nextLinkText: 'Next',
+            nextPageLinkText: 'Next',
+            prevPageLinkText: 'Prev',
+            enableHistory: true,
+            autoStart: 7000,
+            syncTransitions: true,
+            defaultTransitionDuration: 900,
+            onSlideChange: function (prevIndex, nextIndex) {
+                // 'this' refers to the gallery, which is an extension of $('#thumbs')
+                this.find('ul.thumbs li span').css({
+                    opacity: 0.5
+                })
+            },
+            onPageTransitionOut: function (callback) {
+                this.find('ul.thumbs li span').css({
+                    display: 'block'
+                });
+            },
+            onPageTransitionIn: function () {
+                this.find('ul.thumbs li span').css({
+                    display: 'none'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>
